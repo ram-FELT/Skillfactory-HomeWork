@@ -1,0 +1,96 @@
+from news.models import *
+____________________________________________________________________________________________________________________________________________________
+#1Создание пользователя
+u1 = User.objects.create_user(username='Girua') 
+u2 = User.objects.create_user(username='Shtunga')
+____________________________________________________________________________________________________________________________________________________
+#2Присвоение пользователю авторства
+Author.objects.create(authorUser=u1)
+Author.objects.create(authorUser=u2)
+____________________________________________________________________________________________________________________________________________________
+#3Добавление категорий
+Category.objects.create(name='IT')
+Category.objects.create(name='Sport')
+Category.objects.create(name='Сulture')
+Category.objects.create(name='Incidents')
+____________________________________________________________________________________________________________________________________________________
+#4Добавление (статей/новостей)
+author= Author.objects.get(id=1)
+Post.objects.create(author=author, categoryType='NW', title='sometitle', text='somebigtext')
+Post.objects.create(author=author, categoryType='AR', title='sometitle1', text='somesmalltext1')
+author= Author.objects.get(id=2)
+Post.objects.create(author=author, categoryType='AR', title='sometitle2', text='somesmalltext2')
+____________________________________________________________________________________________________________________________________________________
+#5Присвоение категорий
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=1))
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=4))
+Post.objects.get(id=2).postCategory.add(Category.objects.get(id=2))
+Post.objects.get(id=3).postCategory.add(Category.objects.get(id=3))
+____________________________________________________________________________________________________________________________________________________
+#6Создание комментариев
+Comment.objects.create(commentPost=Post.objects.get(id=1), commentUser=Author.objects.get(id=1).authorUser,text='0anytextbyauthor0')
+Comment.objects.create(commentPost=Post.objects.get(id=1), commentUser=Author.objects.get(id=2).authorUser,text='1anytextbyauthor1')
+Comment.objects.create(commentPost=Post.objects.get(id=2),commentUser=Author.objects.get(id=2).authorUser,text='2anytextbyauthor2')
+Comment.objects.create(commentPost=Post.objects.get(id=3), commentUser=Author.objects.get(id=1).authorUser,text='3anytextbyauthor3')
+____________________________________________________________________________________________________________________________________________________
+#7Применение функций (лайков/дизлайков)
+#На комментариях
+Comment.objects.get(id=1).like()      
+Comment.objects.get(id=1).dislike()
+Comment.objects.get(id=1).dislike()
+Comment.objects.get(id=1).dislike()
+Comment.objects.get(id=1).dislike()
+Comment.objects.get(id=2).like()     
+Comment.objects.get(id=2).like()
+Comment.objects.get(id=2).dislike()
+Comment.objects.get(id=3).like()
+Comment.objects.get(id=4).like()
+Comment.objects.get(id=4).like()
+Comment.objects.get(id=4).like()
+Comment.objects.get(id=4).like()
+#На постах
+Post.objects.get(id=1).like()
+Post.objects.get(id=3).like()
+
+Comment.objects.get(id=1).rating
+Comment.objects.get(id=2).rating
+Comment.objects.get(id=3).rating
+Post.objects.get(id=1).rating
+Post.objects.get(id=2).rating
+Post.objects.get(id=3).rating
+____________________________________________________________________________________________________________________________________________________
+#8Применений функции (обновить рейтинг)
+a = Author.objects.get(id=1)
+b = Author.objects.get(id=2)
+a.update_rating()
+b.update_rating()
+a.ratingAuthor
+b.ratingAuthor
+
+____________________________________________________________________________________________________________________________________________________
+#9Узнаём кто лучший пользователь и выводим его рейтинг
+a = Author.objects.order_by('-ratingAuthor')[:1]
+a
+for i in a: 
+    i.authorUser.username
+    i.ratingAuthor 
+____________________________________________________________________________________________________________________________________________________
+#10Выводим дату добавления имя пользователя автора, рейтинг, заголовок и превью лучшей статьи основываясь на лайках/дислайках
+ for i in a: 
+    i.authorUser.date_joined
+    i.authorUser.username
+    i.ratingAuthor 
+b = Post.objects.order_by('rating')[2:]
+b
+for i in b:
+    i.rating
+    i.title
+    i.text
+____________________________________________________________________________________________________________________________________________________
+#11Выводим все комментарии к этой статье.
+
+for i in b:
+    i.dateCreation
+    i.author_id
+    i.rating
+    i.text
