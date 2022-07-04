@@ -15,6 +15,8 @@ News
        {{ filterset.form.as_p }}
        {# Добавим кнопку отправки данных формы #}
        <input type="submit" value="Найти" />
+       <input type="button" onclick="window.location.href = 'http://127.0.0.1:8000/news/sign/subscribe/';"
+              value="Подписаться/Отписаться"/>
    </form>
    <hr>
    {% if news %}
@@ -24,15 +26,17 @@ News
                <td>Дата создания</td>
                <td>Оглавление</td>
                <td>Текст</td>
+               <td>Тип</td>
                <td>Категория</td>
            </tr>
            {% for news in news %}
            <tr>
-               <td>{{ news.pk }}</td>
+               <td>{{ news.pk }}<a href="{{ news.pk  }} ">></a></td>
                <td>{{ news.dateCreation|date:'d M Y' }}</td>
                <td><b>{{ news.Title|truncatewords:2 }}</b></td>
                <td>{{ news.Text|truncatewords:2 }}</td>
-               <td>{{ news.category.name }}</td>
+               <td>{{ news.postType }}</td>
+               <td>{{ news.Category }}</td>
            </tr>
            {% endfor %}
 
