@@ -1,0 +1,22 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Управление подпиской
+{% endblock title %}
+
+{% block content %}
+<h1> Подписаться на новости из категории </h1>
+<br>
+<h2>Вы подписаны на категории:</h2>
+{% for sub in mysubscribes %}
+<p><td>{{sub.category}}</td> <td><a href="{{ sub.get_absolute_url }}"> отписаться </a></td></p>
+{% endfor %}
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Подписаться" />
+    <input type="button" onclick="window.location.href = 'http://127.0.0.1:8000/news/';" value="Вернуться к новостям"/>
+</form>
+
+{% endblock content %}
