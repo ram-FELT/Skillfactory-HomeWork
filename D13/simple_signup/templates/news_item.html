@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filter %}
+{% load custom_tags %}
+
+{% block title %}
+<h1>News|censor</h1>
+{% endblock title %}
+
+{% block content %}
+<h3>{% current_time '%b %d %Y' %}</h3>
+<h1>{{ news_item.dateCreation|date:'d M Y' }}</h1>
+<h2><b>{{ news_item.Title }}</b></h2>
+<h2>{{ news_item.Text }}</h2>
+<input type="button" onclick="window.location.href = 'http://127.0.0.1:8000/news/';" value="Вернуться к новостям"/>
+{% endblock content %}
