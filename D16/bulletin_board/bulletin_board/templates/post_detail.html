@@ -1,0 +1,76 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Объявление
+{% endblock title %}
+
+{% block content %}
+<h3><u>{{ post.title }}</u></h3>
+<br>
+<p>{{ post.contents }}</p>
+<br>
+<p>{{ post.upload }}</p>
+<br>
+<i>
+<td> Опубликовано: {{ post.creation_date|date:'d M Y'}} {{ post.creation_date|time:'G:i:s' }}</td>
+<td> | Автор: {{ post.author.author }}</td>
+<td> | Категория: {{ post.type }} </td></i>
+<p> </p>
+{% if post.author.author == request.user %}
+    <form action="{{ post.get_absolute_url }}/delete" method="post">
+    {% csrf_token %}
+    <input  type="submit" value='Удалить'>
+    </form>
+{% else %}
+    <form action="{{ post.get_absolute_url }}/comment" method="post">
+    {% csrf_token %}
+    <input  type="submit" value='Откликнуться'>
+    </form>
+{% endif %}
+<hr>
+{% if comments %}
+<h3>Отклики:</h3>
+<hr>
+{% else %}
+<h4>Откликов нет!</h4>
+{% endif %}
+<br>
+{% for comment in comments %}
+<p>{{comment.contents}}</p>
+<p><i>
+    <td>Создан: {{ comment.creation_date|date:'d M Y'}} {{ comment.creation_date|time:'G:i:s' }}</td>
+    <td> | Автор: {{ comment.commentator.username }}</i></td>
+     {% if comment.accepted %} <td><i>| Принят </td></i></p>
+        {% else %}
+            {% if post.author.author == request.user %}
+                <form action='{{ request.path }}' method='post'>{% csrf_token %}
+                    <select id="{{comment.id}}_choose" name='{{comment.id}}'>
+                          <option value="accept">Принять</option>
+                          <option value="delete">Удалить</option>
+                   </select>
+                    <input type="submit" value="Выбрать">
+                </form>
+            {%endif%}
+
+        {%endif%}
+
+<br>
+{%endfor%}
+<p></p>
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+
+{% endblock content %}

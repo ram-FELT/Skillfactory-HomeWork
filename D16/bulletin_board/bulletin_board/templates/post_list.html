@@ -1,0 +1,66 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Ваши объявления
+{% endblock title %}
+
+{% block content %}
+   <h2>Всего: {{posts|length}}</h2>
+
+   <hr>
+   {% if posts %}
+       <table>
+           <tr>
+               <td>Название</td>
+               <td>Содержание</td>
+               <td>Категория</td>
+               <td>Автор</td>
+               <td>Дата</td>
+               <td>Откликов</td>
+           </tr>
+           {% for post in posts %}
+           <tr>
+               <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+               <td>{{ post.contents|truncatechars:32 }}</td>
+               <td>{{ post.type }}</td>
+               <td>{{ post.author.author }}</td>
+               <td>{{ post.creation_date|date:'d M Y'}} {{ post.creation_date|time:'G:i:s' }}</td>
+               <td>{{ post.count_comments }}</td>
+                {% if post.author.author == request.user or request.user.is_superuser%}
+               <td><a href="{{ post.get_absolute_url }}/edit"> Правка </a></td>
+               <td><a href="{{ post.get_absolute_url }}/delete"> Удаление </a></td>
+                {% endif %}
+           </tr>
+           {% endfor %}
+
+       </table>
+
+   {% else %}
+       <h2>Объявлений нет!</h2>
+
+   {% endif %}
+<p></p>
+    <form action="post_create" method="post">
+{% csrf_token %}
+<input  type="submit" value='Добавить объявление'>
+</form>
+
+<p></p>
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+   {% if paginator.num_pages != 1 %}
+   {{ page_obj.number }}
+   {% endif %}
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+
+
+{% endblock content %}

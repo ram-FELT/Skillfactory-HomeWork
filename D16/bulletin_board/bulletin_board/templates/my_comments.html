@@ -1,0 +1,54 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Отклики на ваши объявления
+{% endblock title %}
+
+{% block content %}
+   <h2>Всего откликов: {{comments|length}}</h2>
+
+   <hr>
+   {% if comments %}
+       <table>
+           <tr>
+               <td>Объявление</td>
+               <td>Текст отклика</td>
+               <td>Принят</td>
+               <td>Автор</td>
+               <td>Дата</td>
+           </tr>
+           {% for comment in comments %}
+           <tr>
+               <td><a href="{{ comment.get_absolute_url }}">{{ comment.post }}</a></td>
+               <td>{{ comment.contents }}</td>
+               <td>     {% if comment.accepted %} Да
+               {% else %} Нет {% endif %} </td>
+               <td>{{ comment.commentator.username }}</td>
+               <td>{{ comment.creation_date|date:'d M Y' }} {{ comment.creation_date|time:'G:i:s' }}</td>
+
+           </tr>
+           {% endfor %}
+
+       </table>
+
+   {% else %}
+       <h2>Объявлений нет!</h2>
+
+   {% endif %}
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+   {% if paginator.num_pages != 1 %}
+   {{ page_obj.number }}
+   {% endif %}
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Страница пользователя
+{% endblock title %}
+
+{% block content %}
+<h2>Страница пользователя {{request.user.username}}</h2>
+
+<button> <a href="post/post_list"> Объявления </a></button>
+<button> <a href="post/my_comments"> Отклики на мои объявления </a></button>
+<button> <a href="logout"> Выход </a></button>
+<br>
+<br>
+{% if request.user.is_superuser %}
+    <form action="/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="mail" value="do_it">
+        <button type="submit">Недельная рассылка</button>
+    </form>
+{% endif %}
+
+{{request.session.user.username}}
+{% endblock content %}

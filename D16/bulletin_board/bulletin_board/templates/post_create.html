@@ -1,0 +1,16 @@
+{% extends 'default.html' %}
+
+
+{% block title %}
+Объявления
+{% endblock title %}
+
+{% block content %}
+<h1> Создание объявления </h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value='Создать' />
+</form>
+{% endblock content %}
