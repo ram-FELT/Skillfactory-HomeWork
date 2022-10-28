@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title%}{{ room.name }} | {% endblock %}
+
+{% block content %}
+<div class='show-chat'> 
+    <div id='user'>
+        {% for user in users %}
+            <div class='show-message'>
+                <p>
+                    <img src='{{ user.chatuser.avatar.url }}' style='max-height:25px; max-length:25px; padding-right: 0.1rem;'>
+                    {{ user.username }}
+                    <a href='http://127.0.0.1:8000/chat/{{user.id}}'>message</a>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

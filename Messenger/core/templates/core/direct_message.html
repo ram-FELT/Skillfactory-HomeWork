@@ -1,0 +1,109 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title%} Talking to {{ to_user }} | {% endblock %}
+
+{%block content%}
+<div class='room-title'>
+    <p>
+        {{to_user.username}}
+    </p>
+</div>
+<div class='show-chat'> 
+    <div id='#chat-messages'>
+        {% for message in sorted_messages %}
+            <div class='show-message'>
+                <p>
+                    <img src='{{ message.user.chatuser.avatar.url }}' style='max-height:25px; max-length:25px; padding-right: 0.1rem;'>
+                    {{ message.user.username }}: 
+                </p>
+                <p> {{ message.content }} </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class='show-chat-input'>
+    <form method='post' action='.'>
+        <input type='text' name='content' placeholder='Your message...' id='#chat-message-input'>
+        <button id='#chat-message-submit'>Send</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{{ to_user.username|json_script:'json-to_user' }}
+{{ self_user.username|json_script:'json-self_user' }}
+{{ self_user.chatuser.avatar.url|json_script:'json-self_avatar' }}
+{{ to_user.chatuser.avatar.url|json_script:'json-to_avatar' }}
+{{ room.name|json_script:'json-room' }}
+
+<script>
+    const toUser = JSON.parse(document.getElementById('json-to_user').textContent);
+    const selfUser = JSON.parse(document.getElementById('json-self_user').textContent);
+    const selfAvatar = JSON.parse(document.getElementById('json-self_avatar').textContent);
+    const toAvatar = JSON.parse(document.getElementById('json-to_avatar').textContent);
+    const roomName = JSON.parse(document.getElementById('json-room').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        console.log('onmessage')
+
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            let avatar_data = `<img src='${data.avatar}' style='max-height:25px; max-length:25px; padding-right: 0.5rem;'>`
+            let html = "<div class='show-message'>";
+                html += "<p>" + avatar_data + data.username + ":</p>";
+                html += "<p>" + data.message + "</p></div>";
+            
+            document.getElementById('#chat-messages').innerHTML += html;
+            
+            scrollToBottom()
+
+        } else {
+            alert('Empty message')
+        }
+    }
+
+    chatSocket.onclose = function(e) {
+        console.log('onclose')
+    }
+
+    document.getElementById('#chat-message-submit').onclick = function(e) {
+
+        e.preventDefault();
+
+        const messageInputDom = document.getElementById('#chat-message-input');
+        const message = messageInputDom.value;
+
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': selfUser,
+            'room': roomName,
+            'avatar': selfAvatar
+        }))
+
+        messageInputDom.value = '';
+
+        return false
+    };
+
+    function scrollToBottom() {
+        const objDiv = document.getElementById('#chat-messages');
+        objDiv.scrollIntoView({block: "end"});
+    }
+
+    scrollToBottom()
+
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title%} Welcome | {% endblock %}
+
+{%block content%}
+
+<div class="rooms">
+    {% for room in rooms %}
+        <div class="show-rooms">
+            <div class="show-rooms-bg">
+                <h2 class='show-rooms-bg'>{{ room.name }}</h2>
+                <div class="show-rooms-bg" style='width: 18rem;' >
+                    <a href="{% url 'room' room.slug %}" class="show-rooms-bg-front" style='align-text: center;'>Join</a>
+                </div>
+                <div class="show-rooms-bg" style='width: 18rem;' >
+                    <a href="{% url 'room_edit' room.slug %}" class="show-rooms-bg-front" style='align-text: center;'>Edit</a>
+                </div>
+                <div class="show-rooms-bg" style='width: 18rem;' >
+                    <a href="{% url 'room_delete' room.slug %}" class="show-rooms-bg-front" style='align-text: center;'>Delete</a>
+                </div>
+            </div>
+        </div>  
+    {% endfor %}
+</div>
+
+{%endblock%}

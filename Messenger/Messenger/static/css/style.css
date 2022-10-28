@@ -1,0 +1,394 @@
+body {
+    background-color: #9c58d5;
+    margin: 0px;
+}
+nav {
+    display: flex; 
+    padding-left: 1rem;
+    padding-right: 1rem;  
+    background-color: #6c23a9;
+    justify-content: space-between; 
+    align-items: center; 
+}
+.nav-title {
+    color: #000;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+a:link {
+    text-decoration: none;
+}
+  
+a:visited {
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: none;
+}
+  
+a:active {
+    text-decoration: none;
+}
+
+.nav-name {
+    text-align: center;
+    padding-left: 13rem;
+}
+
+.nav-name h1 {
+    color: #000;
+    font-size: 2.50rem;
+    line-height: 1;
+}
+
+.nav-buttons {
+    display: flex; 
+    margin-left: 1rem; 
+    align-items: center; 
+    font-size: 1.50rem;      
+}
+
+.nav-buttons-login {
+    color: #000;
+    padding-right: 0.75rem;
+}
+
+.nav-buttons-login:hover {
+    color: #fff;
+}
+
+.nav-buttons-signup {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #00c4b4;
+    color: #000;
+    border-radius: 0.75rem; 
+}
+
+.nav-buttons-signup:hover {
+    background-color: #0180bf;
+}
+
+.signup-form {
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    width: 25%;
+}
+
+.signup-form form {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.signup-form div {
+    margin-bottom: 1.25rem; 
+}
+
+.signup-form label {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    background-color: #00c4b4;;
+    color: #000;
+    border-radius: 0.75rem; 
+    display: block;
+    text-align: center;
+}
+
+.signup-form input {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    margin-top: 0.5rem; 
+    width: max-content; 
+    border-radius: 0.75rem;
+    border: 0
+}
+
+.signup-form input:focus {
+    outline:none
+}
+
+.signup-form button {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #00c4b4;
+    color: #000;
+    border-radius: 0.75rem; 
+    border: 0;
+}
+
+.signup-form button:hover {
+    background-color: #0180bf;
+}
+
+.signup-form-error {
+    padding: 1rem; 
+    margin-bottom: 1.25rem; 
+    background-color: #000;
+    color: #ff0000;
+    border-radius: 0.75rem;
+}
+
+.users {
+    margin-right:auto
+}
+
+.rooms {
+    margin: auto;
+    justify-content: center;
+    display: flex; 
+    flex-wrap: wrap;
+    width: 50%; 
+}
+
+.show-rooms {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 0.75rem;
+    width: 100%;
+    margin: auto;
+}
+
+.show-rooms-bg {
+    padding: 1rem; 
+    background-color: #00c4b4;
+    text-align: center;
+    margin: auto;
+    border-radius: 0.75rem;
+}
+
+.show-rooms-bg h2 {
+    margin: auto;
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 600; 
+}
+
+.show-rooms-bg a {
+    display: block; 
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #b909f0;
+    color: #000;
+    border-radius: 0.75rem;     
+}
+
+.show-rooms-bg-front {
+    padding: 1rem; 
+    background-color: #ffffff; 
+    text-align: center;
+    margin: auto;
+    border-radius: 0.75rem;
+}
+
+.show-rooms-bg-front a {
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 600;
+    display: block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #34D399; 
+    color: #ffffff; 
+    border-radius: 0.75rem; 
+}
+
+.show-rooms-bg a:hover {
+    background-color: #0180bf;
+}
+
+.show-chat {
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    background-color: #ffffff; 
+    width: 30%;
+    border-radius: 0.75rem;
+    margin: auto;
+    height: 600px;
+    overflow-y: auto;
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 600;
+    text-align: left; 
+}
+
+.show-chat-input {
+    padding: 1rem; 
+    background-color: #ffffff; 
+    width: 30%;
+    border-radius: 0.75rem;
+    margin: auto;
+    margin-top: 0.5%
+}
+
+.show-chat-input form {
+    display: flex; 
+}
+
+.show-chat-input input {
+    margin-right: 0.75rem; 
+    flex: 110%;
+    border: 0;
+}
+
+.show-chat-input input:focus {
+    outline:none
+}
+
+.show-chat-input button {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #34D399; 
+    color: #ffffff; 
+    border-radius: 0.75rem;
+    border: 0;
+}
+
+.show-chat-input button:hover {
+    background-color: #0180bf;
+}
+
+.room-title {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem; 
+    border-radius: 0.75rem;     
+    margin: auto;
+    width: 33%;
+    color: black;
+    font-size: 2rem;
+    line-height: 2rem; 
+    font-weight: 600;
+    text-align: center;
+}
+
+.show-message {
+    padding: 0.5rem; 
+    background-color: #E5E7EB; 
+    border-radius: 0.75rem;     
+    margin-top: 0.875rem;
+}
+
+.show-message p {
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 600;
+    text-align: left; 
+}
+
+.show-message a {
+    padding-top: 0.5rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #34D399; 
+    color: #ffffff; 
+    border-radius: 0.75rem;
+    border: 0;
+    text-decoration: none;
+    color: initial;
+}
+
+.show-message a:hover {
+    background-color: #0180bf;
+}
+
+
+.avatar-form {
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    width: 25%;
+}
+
+.avatar-form form {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.avatar-form div {
+    margin-bottom: 1.25rem; 
+}
+
+.avatar-form label {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    background-color: #059669;; 
+    color: #ffffff; 
+    border-radius: 0.75rem; 
+    display: block;
+    text-align: center;
+    width: auto;
+}
+
+.avatar-form input {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    margin-top: 0.5rem; 
+    width: max-content; 
+    border-radius: 0.75rem;
+    border: 0
+}
+
+.avatar-form input:focus {
+    outline:none
+}
+
+.avatar-form button {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    background-color: #059669; 
+    color: #ffffff; 
+    border-radius: 0.75rem;
+    border: 0;
+}
+
+.avatar-form button:hover {
+    background-color: #0180bf;
+}
+
+.frontpage-button button {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    margin: auto;
+    background-color: #059669; 
+    color: #ffffff; 
+    border-radius: 0.75rem;
+    border: 0;
+}
+
+.frontpage-button button:hover {
+    background-color: #0180bf;
+}
