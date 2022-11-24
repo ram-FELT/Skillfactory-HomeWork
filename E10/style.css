@@ -1,0 +1,114 @@
+html {background-color:white;}
+
+body {
+    font-family: system-ui,Georgia;
+    background: linear-gradient(134deg,#500297, #327e66,#cb7f21);
+    color: #444;
+    min-width: 40%;
+}
+
+.page {
+    display: grid;
+    padding: 2em 6em;
+    margin: 80px auto 20px;
+    border: solid #666;
+    border-width: 10px 10px 10px 10px;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.hd {
+    margin-top: 2.5em;
+    padding-bottom: .5em;
+    text-align: center;
+}
+
+.fluff {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1em;
+}
+
+.bd {border-bottom: 1px solid #ccc;}
+
+.ft {
+    padding: 1em 0 5em 0;
+    font-size: 92%;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+.ft h3 a {
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 4em;
+}
+
+p {
+    line-height: 1.2em;
+    padding-right: 3em;
+    font-size: 70%;
+}
+
+a {
+    color: #990003;
+    text-align: center;
+    font-size: 70%;
+}
+
+a:hover {text-decoration: none;}
+
+h1 {
+    font-size: 150%;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h3, h4 {font-size: 125%;}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 125%;
+}
+
+h1, h2, h3, h4 {color: #333;}
+
+.container {
+    width: 100%;
+    background-color: #ddd;
+}
+
+.skills {
+    text-align: right;
+    padding: 10px 5px;
+    color: white;
+}
+
+.html {width: 65%; background-color: #550074;}
+.css {width: 45%; background-color: #550074;}
+.js {width: 45%; background-color: #550074;}
+
+.python {width: 73%; background-color: #550074;}
+.django {width: 67%; background-color: #550074;}
+.djangorm {width: 62%; background-color: #550074;}
+
+.nginx {width: 35%; background-color: #550074;}
+.docker {width: 20%; background-color: #550074;}
+
+
+@media (min-width: 768px) {
+
+    .page {width: 60%;}
+
+    .hd h1 {
+        font-size: 3.2em;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .hd {margin-top: 2.5em;}
+
+    .hd > * {margin: 10px auto;}
+
+    .bd {margin-bottom: 2em;}
+}
