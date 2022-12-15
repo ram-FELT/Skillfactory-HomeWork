@@ -1,0 +1,20 @@
+{
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" },
+
+  "contacts": [
+    { "id": 1, "name": "Piter", "email": "piter@example.com", "phone": "+7999999999" },
+    { "id": 2, "name": "Theodor", "email": "theodor@example.com", "phone": "+7999992569" },
+    { "id": 3, "name": "Kate", "email": "kater@example.com", "phone": "+799999915216" },
+    { "id": 4, "name": "Norton", "email": "Norton@example.com", "phone": "+7999993636" },
+    { "id": 5, "name": "Taras", "email": "thhat@example.com", "phone": "+79999992626" },
+    { "id": 6, "name": "Jane", "email": "jjj8626@gmail.com", "phone": "+79999926169" },
+    { "id": 7, "name": "Kimberly", "email": "kimkim@example.com", "phone": "+7999994369" },
+    { "id": 8, "name": "Roman", "email": "exterminator@example.com", "phone": "+7999998936" }
+  ]
+}
