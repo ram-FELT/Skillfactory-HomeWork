@@ -1,0 +1,13 @@
+form {
+    margin: 2rem;
+    text-align: center;
+    justify-content: center;
+}
+
+form.placeholder {
+    color: grey;
+}
+
+button {
+    margin-left: 20px;
+}
